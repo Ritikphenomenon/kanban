@@ -10,7 +10,7 @@ Our Node.js application, the Kanban Dashboard, is designed to streamline  operat
 
 ### Intuitive User Interface
 
-The Retailer Dashboard boasts an intuitive and user-friendly interface, prioritizing clarity and simplicity for seamless navigation and access to essential features.
+The Kanban Dashboard boasts an intuitive and user-friendly interface, prioritizing clarity and simplicity for seamless navigation and access to essential features.
 
 ### Effortless Interaction
 
@@ -39,36 +39,55 @@ We provide a comprehensive user account management system. Retailers can effortl
 
 ```bash
 git clone https://github.com/Ritikphenomenon/kanban.git
-
+```
 
 Running the Client
 Install Dependencies
 
+```bash
 yarn install
+```
 
 Start the Development Server
 
+```bash
 yarn dev
+```
 
 Running the Server
 
+
 Install Dependencies
 
+```bash
 npm install
+```
 
 Start the Development Server
 
+```bash
 node index.js
-
-About Me
-Hello, I'm Ritik Raj Pandey, currently studying IT at Bit Sindri, Dhanbad. My technical expertise spans data structures, algorithms, and full-stack development. As the Smart India Hackathon 2022 winner and team leader, I bring valuable experience to the table. I've honed my communication and technical skills through a 6-month internship at Coding Ninjas.
+```
 
 
-Links
-LinkedIn
-Twitter
+**About Me**
+Hello, I'm Ritik Raj Pandey, a dedicated IT student at Bit Sindri, Dhanbad. My passion lies in mastering data structures, algorithms, and full-stack development. With a proven track record as the Smart India Hackathon 2022 winner and team leader, I bring invaluable experience to any project. My skills are finely tuned from a 6-month internship at Coding Ninjas, where I enhanced both my technical prowess and communication abilities.
 
-Skills
-JavaScript, Node.js, Express, MongoDB, C, C++, Data Structures, Algorithms
+**Links**
+- [LinkedIn](https://www.linkedin.com/in/ritik-raj-pandey)
+- [Twitter](https://twitter.com/ritikrajpandey)
 
-Join us in revolutionizing retail management with the Kanban Dashboard. Let's shape the future together! 🚀
+**Skills**
+- JavaScript
+- Node.js
+- Express
+- MongoDB
+- C
+- C++
+- Data Structures
+- Algorithms
+
+---
+
+
+Join us in revolutionizing   with carrier field. Let's shape the future together! 🚀

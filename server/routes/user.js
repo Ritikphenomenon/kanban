@@ -58,28 +58,28 @@ router.post('/signup', async (req, res) => {
   
   router.post('/create', authenticateJwt, async (req, res) => {
     try {
-      const { title, 
-        description, 
-        status,
-         published } = req.body;
-      const Id=req.user.username;
-  
-      const tasks = new Task({
-        title,
-        description,
-        status,
-        published,
-        Id
-      });
-  
-      await tasks.save();
-      res.json({ message: 'taskses created successfully', tasksId: tasks.id });
+        const { title, description, status, published, deadline } = req.body;
+        const Id = req.user.username;
+
+        const tasks = new Task({
+            title,
+            description,
+            status,
+            published,
+            deadline, // Include the deadline field
+            Id
+        });
+
+        await tasks.save();
+        res.json({ message: 'Task created successfully', taskId: tasks.id });
     } catch (error) {
-      console.error('Error creating taskes:', error.message);
-      res.status(500).json({ message: 'Server error during course creation' });
+        console.error('Error creating task:', error.message);
+        res.status(500).json({ message: 'Server error during task creation' });
     }
-  });
+});
+
   
+
 
   router.delete('/delete/:id', async (req, res) => {
     Task.findByIdAndDelete(req.params.id)
@@ -94,6 +94,35 @@ router.post('/signup', async (req, res) => {
   });
 
 
+  router.put('/tasks/:id', async (req, res) => {
+    try {
+      const taskId = req.params.id;
+      let newStatus;
+  
+      // Determine new status based on destination column
+      switch (parseInt(req.body.status)) {
+        case 1:
+          newStatus = 0; // TO DO
+          break;
+        case 2:
+          newStatus = 1; // IN REVIEW
+          break;
+        case 3:
+          newStatus = 2; // DONE
+          break;
+        default:
+          throw new Error('Invalid status');
+      }
+  
+      // Update the task status in the database
+      await Task.findByIdAndUpdate(taskId, { status: newStatus });
+  
+      res.json({ message: 'Task status updated successfully' });
+    } catch (error) {
+      console.error('Error updating task status:', error.message);
+      res.status(500).json({ message: 'Server error during task status update' });
+    }
+  });
   
 
   module.exports = router

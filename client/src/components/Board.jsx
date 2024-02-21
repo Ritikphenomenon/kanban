@@ -5,6 +5,8 @@ import { DragDropContext } from "react-beautiful-dnd";
 import  Column  from './Columns'
 import axios from "axios";
 
+
+
 export default function Board() {
     const [completed, setCompleted] = useState([]);
     const [incomplete, setIncomplete] = useState([]);
@@ -20,8 +22,8 @@ export default function Board() {
                 const status2 = tasks.filter(task => task.status === 2);
                 const status0 = tasks.filter(task => task.status === 0);
 
-                setInReview(status1);
-                setCompleted(status2);
+                setInReview(status2);
+                setCompleted(status1);
                 setIncomplete(status0);
             } catch (error) {
                 console.error("Error fetching tasks:", error.message);
@@ -33,17 +35,31 @@ export default function Board() {
  
     
 
-    const handleDragEnd = (result) => {
+    const handleDragEnd = async (result) => {
         const { destination, source, draggableId } = result;
-
+    
         if (!destination || source.droppableId === destination.droppableId) return;
-
+    
         deletePreviousState(source.droppableId, draggableId);
-
+    
         const task = findItemById(draggableId, [...incomplete, ...completed, ...inReview]);
-
+    
+        
+        const newStatus = parseInt(destination.droppableId) ;
+    
+        try {
+            await axios.put(`http://localhost:3000/users/tasks/${draggableId}`, {
+                status: newStatus
+            });
+        } catch (error) {
+            console.error("Error updating task status:", error.message);
+            // Handle error
+        }
+    
         setNewState(destination.droppableId, task);
     };
+
+    
 
     function deletePreviousState(sourceDroppableId, taskId) {
         switch (sourceDroppableId) {

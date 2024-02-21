@@ -1,7 +1,6 @@
 
 
 import { Draggable } from "react-beautiful-dnd";
-
 import axios from "axios";
 
 export function Card({ task, index }) {
@@ -19,6 +18,8 @@ export function Card({ task, index }) {
         }
     };
 
+    console.log(task);
+
     return (
         <Draggable draggableId={task._id} key={task._id} index={index}>
             {(provided, snapshot) => (
@@ -30,6 +31,7 @@ export function Card({ task, index }) {
                 >
                     <div className="text-center mb-4">
                         <h1 className="text-lg font-bold">{task.title}</h1>
+
                     </div>
 
                     <div className="mb-4">
@@ -37,13 +39,23 @@ export function Card({ task, index }) {
                     </div>
 
                     <div className="flex justify-between items-center">
+
                         <button 
                             onClick={handleDelete}
                             className="text-red-500 hover:text-red-700 focus:outline-none"
                         >
                             Delete
                         </button>
-                        <span className="text-xs text-gray-500">@{task.Id}</span>
+                        
+                        <p className="text-xs text-gray-500 ">
+        {task.deadline && new Date(task.deadline).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        })}
+
+    </p>
+                        <span className="text-xs text-gray-500">  @{task.Id}</span>
 
                     </div>
 

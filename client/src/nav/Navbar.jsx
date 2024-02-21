@@ -11,7 +11,8 @@ export default function Navbar() {
         title: '',
         description: '',
         status: '0',
-        published: false
+        published: false,
+        deadline: ''
     });
 
     const handleChange = (e) => {
@@ -26,23 +27,20 @@ export default function Navbar() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Make a POST request to your backend API
+            
             const response = await axios.post('http://localhost:3000/users/create', formData, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you're sending JWT token in the Authorization header
-                    'Content-Type': 'application/json' // Set the content type to JSON
+                    Authorization: `Bearer ${localStorage.getItem('token')}`, 
+                    'Content-Type': 'application/json' 
                 }
             });
-
-            // Handle successful response
-            console.log(response.data); // Log response data
-            
-            // Clear the form data after submission (if needed)
+            console.log(response.data); 
             setFormData({
                 title: '',
                 description: '',
                 status: '0',
-                published: false
+                published: false,
+                deadline:''
             });
             
             // Close the modal after submission (if needed)
@@ -64,6 +62,7 @@ export default function Navbar() {
 
     return (
         <>
+
             <div className="navbar bg-base-100 border border-slate-300 fixed z-20">
                 <div className="flex-1">
                     <a className="btn btn-ghost text-xl">Kanban Board</a>
@@ -91,14 +90,19 @@ export default function Navbar() {
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Create Task</h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
+
+
                         <div>
                             <label htmlFor="title" className="block text-sm font-medium">Title:</label>
                             <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} className="input input-bordered w-full" />
                         </div>
+
                         <div>
                             <label htmlFor="description" className="block text-sm font-medium">Description:</label>
                             <textarea id="description" name="description" value={formData.description} onChange={handleChange} className="textarea textarea-bordered w-full"></textarea>
                         </div>
+
+
                         <div>
                             <label htmlFor="status" className="block text-sm font-medium">Status:</label>
                             <select id="status" name="status" value={formData.status} onChange={handleChange} className="select select-bordered w-full">
@@ -107,6 +111,12 @@ export default function Navbar() {
                                 <option value="2">2</option>
                             </select>
                         </div>
+                    
+                        <div>
+                            <label htmlFor="deadline" className="block text-sm font-medium">Deadline:</label>
+                            <input type="date" id="deadline" name="deadline" value={formData.deadline} onChange={handleChange} className="input input-bordered w-full" />
+                        </div>
+
                         <div className="flex items-center">
                             <input type="checkbox" id="published" name="published" checked={formData.published} onChange={handleChange} className="checkbox" />
                             <label htmlFor="published" className="ml-2 text-sm">Published</label>

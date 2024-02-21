@@ -12,9 +12,11 @@ const taskSchema = new mongoose.Schema({
     description: String,
     status: Number,
     published:Boolean,
+    deadline: Date, 
     Id: String
 });
     
+
 
 const User = mongoose.model('User', userSchema);
 const Task = mongoose.model('Task', taskSchema);

@@ -8,7 +8,6 @@ import { Card } from "./Card";
 export default function Column ({ title, tasks, id , className}) {
     return (
         <div className={className}>
-
             <div className="text-slate-800 font-semibold w-full grid place-items-center bg-white border border-gray-100 sticky top-0 p-3">
                 {title}
             </div>
